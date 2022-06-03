@@ -1,11 +1,16 @@
-import React from 'react'
 
-const App = () => {
+import {AppBar, Typography} from '@material-ui/core';
+
+function App() {
   return (
-    <div>
-        Canvas Ready!
-    </div>
-  )
+    <>
+  <AppBar position="static" color="inherit">
+    <Typography variant="h4" align="center">
+      Video Conference
+    </Typography>
+  </AppBar>
+</>
+  );
 }
 
-export default App
+export default App;
