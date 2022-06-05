@@ -7,7 +7,8 @@ const useStyles = makeStyles((theme) => ({
     video: {
       width: '450px',
       [theme.breakpoints.down('xs')]: {
-        width: '95vw',
+        width: '370px',
+        aspectRatio: 1.3,
       },
       alignSelf: 'center'
     },
@@ -28,15 +29,7 @@ const VideoPlayer = () => {
     const classes = useStyles();
   return (
           <Grid container className={classes.gridContainer}>
-              {myVideo &&  (
-                    <Paper className={classes.paper} style={{background: 'transparent'}}>
-                    <Grid item xs={12} md={6}>
-                    <Typography variant="h6" gutterBottom style={{color: "white"}}>{name || 'Name'}</Typography>
-                        <video playsInline className={classes.video}  ref={myVideo} muted style={{borderRadius: "7px"}}/>
-                    </Grid>
-                </Paper>
-              )}
-               {
+            {
                    callAccepted && !callEnded && (
                     <Paper className={classes.paper} style={{background: 'transparent'}}>
                     <Grid item xs={12} md={6}>
@@ -46,6 +39,14 @@ const VideoPlayer = () => {
                 </Paper>
                    )
                }
+              {myVideo &&  (
+                    <Paper className={classes.paper} style={{background: 'transparent'}}>
+                    <Grid item xs={12} md={6}>
+                    <Typography variant="h6" gutterBottom style={{color: "white"}}>{name || 'Name'}</Typography>
+                        <video playsInline className={classes.video}  ref={myVideo} muted style={{borderRadius: "7px"}}/>
+                    </Grid>
+                </Paper>
+              )}
     </Grid>
   )
 }
