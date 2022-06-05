@@ -28,11 +28,11 @@ const VideoPlayer = () => {
     const classes = useStyles();
   return (
           <Grid container className={classes.gridContainer}>
-              {stream &&  (
+              {myVideo &&  (
                     <Paper className={classes.paper} style={{background: 'transparent'}}>
                     <Grid item xs={12} md={6}>
                     <Typography variant="h6" gutterBottom style={{color: "white"}}>{name || 'Name'}</Typography>
-                        <video playsInline muted className={classes.video}  ref={myVideo} style={{borderRadius: "7px"}}/>
+                        <video playsInline className={classes.video}  ref={myVideo} muted style={{borderRadius: "7px"}}/>
                     </Grid>
                 </Paper>
               )}
@@ -41,7 +41,7 @@ const VideoPlayer = () => {
                     <Paper className={classes.paper} style={{background: 'transparent'}}>
                     <Grid item xs={12} md={6}>
                     <Typography variant="h6" gutterBottom style={{color: "white"}}>{call.name || 'Name'}</Typography>
-                        <video playsInline muted className={classes.video}  ref={userVideo} style={{borderRadius: "7px"}}/>
+                        <video playsInline className={classes.video}  ref={userVideo} style={{borderRadius: "7px"}}/>
                     </Grid>
                 </Paper>
                    )
