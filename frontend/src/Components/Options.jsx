@@ -33,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
       padding: '10px 20px',
-      border: '2px solid black',
     },
    }));
 
@@ -47,7 +46,7 @@ const Options = ({children}) => {
             <form className={classes.root} noValidate autoComplete="off">
                 <Grid container className={classes.gridContainer}>
                     <Grid item xs={12} md={6} className={classes.padding}>
-                        <Typography variant="h6" gutterBottom>Account Info</Typography>
+                        <Typography variant="h6" gutterBottom>Enter a nickname</Typography>
                         <TextField label="Name" value={name} onChange={(e)=>{setName(e.target.value)}} fullWidth/>
                         <CopyToClipboard text={me} className={classes.margin} >
                             <Button variant="contained" color="primary" startIcon={<Assignment fontSize="large"/>} fullWidth>

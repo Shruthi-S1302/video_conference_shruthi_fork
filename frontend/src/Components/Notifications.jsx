@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Button } from '@material-ui/core';
+import { Button} from '@material-ui/core';
 import { SocketContext } from '../SocketContext';
 
 const Notifications = () => {
@@ -8,9 +8,9 @@ const Notifications = () => {
     <>
     {call.isReceivedCall && !callAccepted && (
             <div style={{display: 'flex', justifyContent: "center"}}>
-                <h1>{call.name} is calling: </h1>
-                <Button variant="contained" color="primary" onClick={answerCall}>
-                    Answer
+                <h4>{call.name} is calling:  </h4>
+                <Button variant="contained"  onClick={answerCall} style= {{background:"#9800DA", marginLeft: "2%"}}>
+                    <span style={{color: "white"}}>Answer</span>
                 </Button>
             </div>
     )}

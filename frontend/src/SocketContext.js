@@ -12,6 +12,7 @@ const ContextProvider = ({children}) => {
     const [stream, setStream] = useState(null);
     const [me, setMe] = useState('');
     const [call, setCall] = useState({});
+    const [to, setTo] = useState('');
     const [callAccepted,setCallAccepted] = useState(false);
     const [callEnded, setCallEnded] = useState(false);
     const [name, setName] = useState('');
@@ -61,7 +62,7 @@ const ContextProvider = ({children}) => {
 
     const callUser = (id) => {
         const peer = new Peer({initiator: true, trickle: false, stream});
-
+        setTo(id);
         peer.on('signal',data => {
             socket.emit('calluser', {userToCall: id, signalData: data, from: me, name});
         });
@@ -82,7 +83,12 @@ const ContextProvider = ({children}) => {
     }
 
     const leaveCall = () => {
-        socket.emit('leftcall',call.from);
+        if(call.isReceivedCall){
+            socket.emit('leftcall',call.from);
+        }
+        else{
+            socket.emit('leftcall',to);
+        }
         setCallEnded(true);
         connectionRef.current.destroy();
         window.location.reload();

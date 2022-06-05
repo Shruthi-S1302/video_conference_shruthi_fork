@@ -14,8 +14,6 @@ const useStyles = makeStyles((theme)=>({
     justifyContent: 'center',
     alignItems: 'center',
     width: '600px',
-    border: '2px solid black',
-
     [theme.breakpoints.down('xs')]: {
       width: '90%',
     },
@@ -35,9 +33,12 @@ function App() {
   const classes = useStyles();
   return (
     <div className={classes.wrapper}>
-  <AppBar className={classes.appBar} position="static" color="inherit">
-    <Typography variant="h4" align="center">
-      Video Conference
+  <AppBar className={classes.appBar} position="static" style={{ background: 'transparent', boxShadow: 'none'}}>
+  <Typography variant="h4" align="center" style={{color:"white"}}> 
+      X
+    </Typography>
+    <Typography variant="h4" align="center" style={{color:"#FF1B86"}}> 
+      Stream
     </Typography>
   </AppBar>
   <VideoPlayer/>

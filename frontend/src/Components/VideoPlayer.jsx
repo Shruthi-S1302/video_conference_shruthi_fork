@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
       padding: '10px',
-      border: '2px solid black',
       margin: '10px',
     },
   }));
@@ -30,21 +29,21 @@ const VideoPlayer = () => {
   return (
           <Grid container className={classes.gridContainer}>
               {stream &&  (
-                    <Paper className={classes.paper}>
+                    <Paper className={classes.paper} style={{background: 'transparent'}}>
                     <Grid item xs={12} md={6}>
-                        <Typography variant="h5" gutterBottom>{name || 'Name'}</Typography>
-                        <video playsInline muted className={classes.video}  ref={myVideo}/>
+                    <Typography variant="h6" gutterBottom style={{color: "white"}}>{name || 'Name'}</Typography>
+                        <video playsInline muted className={classes.video}  ref={myVideo} style={{borderRadius: "7px"}}/>
                     </Grid>
                 </Paper>
               )}
                {
                    callAccepted && !callEnded && (
-                    <Paper className={classes.paper}>
+                    <Paper className={classes.paper} style={{background: 'transparent'}}>
                     <Grid item xs={12} md={6}>
-                        <Typography variant="h5" gutterBottom>{call.name || 'Name'}</Typography>
-                        <video playsInline muted className={classes.video} ref={userVideo}/>
+                    <Typography variant="h6" gutterBottom style={{color: "white"}}>{call.name || 'Name'}</Typography>
+                        <video playsInline muted className={classes.video}  ref={userVideo} style={{borderRadius: "7px"}}/>
                     </Grid>
-                </Paper> 
+                </Paper>
                    )
                }
     </Grid>
