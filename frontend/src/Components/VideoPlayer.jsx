@@ -7,15 +7,14 @@ const useStyles = makeStyles((theme) => ({
     video: {
       width: '450px',
       [theme.breakpoints.down('xs')]: {
-        width: '370px',
-        aspectRatio: 1.3,
+        width: '160px',
       },
       alignSelf: 'center'
     },
     gridContainer: {
       justifyContent: 'center',
       [theme.breakpoints.down('xs')]: {
-        flexDirection: 'column',
+        flexDirection: 'row',
       },
     },
     paper: {
