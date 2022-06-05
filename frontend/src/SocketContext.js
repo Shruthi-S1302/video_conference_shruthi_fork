@@ -2,7 +2,6 @@ import React, {createContext, useRef, useState, useEffect} from 'react';
 import { io } from 'socket.io-client';
 import Peer from 'simple-peer';
 
-
 const SocketContext = createContext();
 
 const socket = io('https://video-conf002.herokuapp.com/');
@@ -16,7 +15,7 @@ const ContextProvider = ({children}) => {
     const [callAccepted,setCallAccepted] = useState(false);
     const [callEnded, setCallEnded] = useState(false);
     const [name, setName] = useState('');
-
+    const audio = useRef(new Audio(require('./ring.wav')));
     const myVideo = useRef();
     const userVideo = useRef();
     const connectionRef = useRef();
@@ -28,17 +27,19 @@ const ContextProvider = ({children}) => {
             myVideo.current.srcObject = currentStream;
             myVideo.current.play();
         });
-
+        
         socket.on('me', (id) => {setMe(id)});
         socket.on('calluser', ({from, name: callerName, signal}) => {
         setCall({isReceivedCall:true, from, name: callerName, signal});
+        audio.current.play();
+        audio.current.loop = true;
         });
         socket.on('leaveself',()=>{leaveSelf()});
     }, []);
     
     const answerCall = () => {
         setCallAccepted(true);
-        
+        audio.current.pause();
         const peer = new Peer({initiator: false, trickle: false, stream});
 
         
@@ -59,6 +60,8 @@ const ContextProvider = ({children}) => {
     }
 
     const callUser = (id) => {
+        audio.current.play();
+        audio.current.loop = true;
         const peer = new Peer({initiator: true, trickle: false, stream});
         setTo(id);
         peer.on('signal',data => {
@@ -71,6 +74,7 @@ const ContextProvider = ({children}) => {
         });
 
         socket.on('callaccepted', ({signal,from})=>{
+            audio.current.pause();
             console.log("call accepted");
             setCall({name:from});
             setCallAccepted(true);
