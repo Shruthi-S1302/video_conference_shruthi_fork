@@ -34,8 +34,7 @@ const ContextProvider = ({children}) => {
         socket.on('calluser', ({from, name: callerName, signal}) => {
         setCall({isReceivedCall:true, from, name: callerName, signal});
         });
-        socket.on('leaveself',()=>{leaveSelf(),
-        console.log("leaveself triggered")});
+        socket.on('leaveself',()=>{leaveSelf()});
     }, []);
     
     const answerCall = () => {
