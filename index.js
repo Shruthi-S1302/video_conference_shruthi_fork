@@ -18,15 +18,22 @@ app.get("/",(req,res) => {
 });
 
 io.on("connection", (socket) => {
+    console.log(socket.id);
     socket.emit('me',socket.id);
     socket.on('disconnect',()=> {
+        //issue
         socket.broadcast.emit("callended");
     });
     socket.on('calluser', ({userToCall, signalData, from, name}) => {
-        io.to(userToCall).emit('calluser',{signalData,from,name});
+        io.to(userToCall).emit('calluser',{signal:signalData,from,name});
     });
-    socket.on('answercall', (data) => {
-        io.to(data.to).emit('callaccepted', data.signal);
+    socket.on('answercall', ({signal,to,from}) => {
+        io.to(to).emit('callaccepted', {signal,from});
+    });
+    socket.on('leftcall',(data)=>{
+        console.log('leftcall trigger');
+        console.log(data);
+        io.to(data).emit('leaveself');
     });
 });
 
