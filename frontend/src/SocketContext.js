@@ -15,6 +15,7 @@ const ContextProvider = ({children}) => {
     const [callAccepted,setCallAccepted] = useState(false);
     const [callEnded, setCallEnded] = useState(false);
     const [name, setName] = useState('');
+    const [calling, setCalling] = useState(false);
     const audio = useRef(new Audio(require('./ring.wav')));
     const myVideo = useRef();
     const userVideo = useRef();
@@ -62,6 +63,7 @@ const ContextProvider = ({children}) => {
     const callUser = (id) => {
         audio.current.play();
         audio.current.loop = true;
+        setCalling(true);
         const peer = new Peer({initiator: true, trickle: false, stream});
         setTo(id);
         peer.on('signal',data => {
@@ -75,6 +77,7 @@ const ContextProvider = ({children}) => {
 
         socket.on('callaccepted', ({signal,from})=>{
             audio.current.pause();
+            setCalling(false);
             console.log("call accepted");
             setCall({name:from});
             setCallAccepted(true);
@@ -85,14 +88,15 @@ const ContextProvider = ({children}) => {
     }
 
     const leaveCall = () => {
+        audio.current.pause();
         if(call.isReceivedCall){
             socket.emit('leftcall',call.from);
         }
         else{
             socket.emit('leftcall',to);
         }
-        setCallEnded(true);
-        connectionRef.current.destroy();
+        if(connectionRef.current){
+        connectionRef.current.destroy();}
         window.location.reload();
     }
     const leaveSelf = () => {
@@ -103,7 +107,7 @@ const ContextProvider = ({children}) => {
     }
 
     return(
-        <SocketContext.Provider value={{ stream, me, call, callAccepted, callEnded, name, myVideo, userVideo, connectionRef, setName, callUser, leaveCall, answerCall}}>
+        <SocketContext.Provider value={{ stream, me, call, callAccepted, callEnded, name, myVideo, userVideo, connectionRef, setName, callUser, leaveCall, answerCall,calling}}>
             {children}
         </SocketContext.Provider>
     )
