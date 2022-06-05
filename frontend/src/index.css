@@ -10,7 +10,7 @@ body {
     rgba(0, 0, 0, 0.3), 
     rgba(0, 0, 0, 0.3)
   ),
-  url(https://i.ibb.co/J5D1DfN/bgimg.jpg);
+  url(./bgimg.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;

@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
     video: {
       width: '450px',
       [theme.breakpoints.down('xs')]: {
-        width: '160px',
+        width: '95vw',
       },
       alignSelf: 'center'
     },
@@ -20,6 +20,9 @@ const useStyles = makeStyles((theme) => ({
     paper: {
       padding: '10px',
       margin: '10px',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center'
     },
   }));
 
