@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     gridContainer: {
       justifyContent: 'center',
       [theme.breakpoints.down('xs')]: {
-        flexDirection: 'row',
+        flexDirection: 'column',
       },
     },
     paper: {
@@ -34,7 +34,7 @@ const VideoPlayer = () => {
             {
                    callAccepted && !callEnded && (
                     <Paper className={classes.paper} style={{background: 'transparent'}}>
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={12} md={12}>
                     <Typography variant="h6" gutterBottom style={{color: "white"}}>{call.name || 'Name'}</Typography>
                         <video playsInline className={classes.video}  ref={userVideo} style={{borderRadius: "7px"}}/>
                     </Grid>
@@ -43,7 +43,7 @@ const VideoPlayer = () => {
                }
               {myVideo &&  (
                     <Paper className={classes.paper} style={{background: 'transparent'}}>
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={12} md={12}>
                     <Typography variant="h6" gutterBottom style={{color: "white"}}>{name || 'Name'}</Typography>
                         <video playsInline className={classes.video}  ref={myVideo} muted style={{borderRadius: "7px"}}/>
                     </Grid>

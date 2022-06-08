@@ -18,7 +18,9 @@ const useStyles = makeStyles((theme) => ({
       },
     },
     container: {
-      width: '600px',
+      marginRight: '70%',
+      marginTop: '-345px',
+      width: '300px',
       margin: '35px 0',
       padding: 0,
       [theme.breakpoints.down('xs')]: {
@@ -32,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
       padding: 20,
     },
     paper: {
-      padding: '10px 20px',
+      padding: '10px 20px ',
     },
    }));
 
@@ -45,7 +47,7 @@ const Options = ({children}) => {
         <Paper elevation={10} className={classes.paper}>
             <form className={classes.root} noValidate autoComplete="off">
                 <Grid container className={classes.gridContainer}>
-                    <Grid item xs={12} md={6} className={classes.padding}>
+                    <Grid item xs={12} md={12} className={classes.padding}>
                         <Typography variant="h6" gutterBottom>Enter a nickname</Typography>
                         <TextField label="Name" value={name} onChange={(e)=>{setName(e.target.value)}} fullWidth/>
                         <CopyToClipboard text={me} className={classes.margin} >
@@ -54,7 +56,7 @@ const Options = ({children}) => {
                             </Button>
                         </CopyToClipboard>
                     </Grid>
-                    <Grid item xs={12} md={6} className={classes.padding}>
+                    <Grid item xs={12} md={12} className={classes.padding}>
                         <Typography variant="h6" gutterBottom>Make a Call</Typography>
                         <TextField label="ID to Call" value={idToCall} onChange={(e)=>{setIdToCall(e.target.value)}} fullWidth/>
                         <div className={classes.margin}>
