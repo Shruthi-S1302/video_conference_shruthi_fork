@@ -1,5 +1,5 @@
 
-import {AppBar, Typography} from '@material-ui/core';
+import {AppBar, Typography, Container, Paper} from '@material-ui/core';
 import VideoPlayer from './Components/VideoPlayer';
 import Options from './Components/Options';
 import Notifications from './Components/Notifications';
@@ -27,6 +27,38 @@ const useStyles = makeStyles((theme)=>({
     alignItems: 'center',
     width: '100%',
   },
+  videochat: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    width: "60%"
+  },
+  vidcontent: {
+    display: "flex",
+    justifyContent: 'center',
+    width: "100%",
+    height: "60%"
+  },
+  optioncontent: {
+    display: "flex",
+    justifyContent: 'center',
+    width: "100%",
+    height: "40%"
+  },
+  chatcontent: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    border: '2px solid white',
+    width: "40%"
+  },
+  content: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    width: "100%",
+    height: "80vh"
+  },
 }));
 
 function App() {
@@ -41,10 +73,22 @@ function App() {
       Stream
     </Typography>
   </AppBar>
-  <VideoPlayer/>
-  <Options>
-    <Notifications/>
+  <Container className={classes.content}>
+  <Container className={classes.videochat}>
+    <Container className={classes.vidcontent}>
+      <VideoPlayer/>
+    </Container>
+    <Container className={classes.optioncontent}>
+    <Options>
   </Options>
+    </Container>
+  {/*
+  */}
+  </Container>
+  <Paper className={classes.chatcontent}>
+    <Notifications/>
+  </Paper>
+  </Container>
 </div>
   );
 }
